@@ -1,8 +1,12 @@
-class HashMap {
+import java.security.MessageDigest
 
-    fun <K, V> hash(key: K, value: V): Int {
+class HashMap <K, V> (key: K, value: V) {
 
-        return 0 // todo: replace returned value
+    fun hash(key: K): String {
+        return MessageDigest
+            .getInstance("SHA-256")
+            .digest(key.toString().toByteArray())
+            .fold("", { str, it -> str + "%02x".format(it) })
     }
 
 }
