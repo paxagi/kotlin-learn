@@ -2,7 +2,8 @@ class Stack <T>(initValue: T? = null){
     class Element<E>(var value: E, var next: Element<E>?)
     private var last: Element<T>? = null
     var size: Int = 0
-        get() = field
+        private set
+
     init {
         if (initValue != null) push(initValue)
     }
