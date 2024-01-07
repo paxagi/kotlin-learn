@@ -33,19 +33,27 @@ fun main() {
 
     println("l: ${empty.size}, ${alone.size}")
 
-    empty.push("new").let { println("push: ${it.value}") }
-    alone.push("new").let { println("push: ${it.value}") }
+    empty.push("new")
+    alone.push("new")
+    println("get: ${empty.get()}")
+    println("get: ${alone.get()}")
     println("l: ${empty.size}, ${alone.size}")
 
-    empty.pop().let { println("pop: ${it?.value}") }
-    alone.pop().let { println("pop: ${it?.value}") }
+    empty.pop()
+    alone.pop()
+    println("get: ${empty.get()}")
+    println("get: ${alone.get()}")
     println("l: ${empty.size}, ${alone.size}")
 
-    empty.pop().let { println("pop: ${it?.value}") }
-    alone.pop().let { println("pop: ${it?.value}") }
+    empty.pop()
+    alone.pop()
+    println("get: ${empty.get()}")
+    println("get: ${alone.get()}")
     println("l: ${empty.size}, ${alone.size}")
 
-    empty.push("new").let { println("push: ${it.value}") }
-    alone.push("new").let { println("push: ${it.value}") }
+    empty.push("new")
+    alone.push("new")
+    println("get: ${empty.get()}")
+    println("get: ${alone.get()}")
     println("l: ${empty.size}, ${alone.size}")
 }
