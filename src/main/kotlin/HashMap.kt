@@ -1,4 +1,3 @@
-import java.math.BigInteger
 import java.security.MessageDigest
 
 class HashMap <K, V> (key: K, value: V) {
@@ -6,16 +5,15 @@ class HashMap <K, V> (key: K, value: V) {
     companion object {
         fun <K> hash(key: K): Int { // TODO: set private modifier
             return MessageDigest
-            .getInstance("SHA-256")
-            .digest(key.toString().toByteArray())
-            .fold("", { str, it -> str + "%02x".format(it) }).toBigInteger(16).toInt()
+                .getInstance("SHA-256")
+                .digest(key.toString().toByteArray())
+                .fold("", { str, it -> str + "%02x".format(it) }).toBigInteger(16).toInt()
         }
     }
 
     fun push(key: K, value: V) {
         val bucketIndex = hash(key)
     }
-
 }
 
 fun main() {
