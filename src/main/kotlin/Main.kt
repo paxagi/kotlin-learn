@@ -1,5 +1,5 @@
 class Stack <T>(initValue: T? = null){
-    class Element<E>(var value: E, var next: Element<E>?)
+    private class Element<E>(var value: E, var next: Element<E>?)
     private var last: Element<T>? = null
     var size: Int = 0
         private set
@@ -17,11 +17,11 @@ class Stack <T>(initValue: T? = null){
 
     fun get(): T? = last?.value
 
-    fun pop(): Element<T>? {
+    fun pop(): T? {
         val result = last
         last = last?.next
         if (size > 0) size--
-        return result
+        return result?.value
     }
 }
 
