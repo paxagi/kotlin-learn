@@ -1,19 +1,19 @@
+import java.math.BigInteger
 import java.security.MessageDigest
 
 class HashMap <K, V> (key: K, value: V) {
     private var dict = emptyArray<List<Pair<K, V>>>()
     companion object {
-        fun <K> hash(key: K): String { // TODO: set private modifier
+        fun <K> hash(key: K): Int { // TODO: set private modifier
             return MessageDigest
             .getInstance("SHA-256")
             .digest(key.toString().toByteArray())
-            .fold("", { str, it -> str + "%02x".format(it) })
+            .fold("", { str, it -> str + "%02x".format(it) }).toBigInteger(16).toInt()
         }
     }
 
     fun push(key: K, value: V) {
-        val bucket = hash(key)
-        //todo: побайтово конвертировать строку в число
+        val bucketIndex = hash(key)
     }
 
 }
