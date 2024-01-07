@@ -1,7 +1,7 @@
 import java.security.MessageDigest
 
 class HashMap <K, V> (key: K, value: V) {
-    private var dict = emptyArray<List<Pair<K, V>>>()
+    private var dict = emptyArray<MutableMap<K, V>>()
     companion object {
         fun <K> hash(key: K): Int { // TODO: set private modifier
             return MessageDigest
@@ -13,6 +13,8 @@ class HashMap <K, V> (key: K, value: V) {
 
     fun push(key: K, value: V) {
         val bucketIndex = hash(key)
+        val pair = dict[bucketIndex]
+        if (pair.containsKey(key)) pair[key] = value
     }
 }
 
