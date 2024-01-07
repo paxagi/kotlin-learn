@@ -16,6 +16,8 @@ class Stack <T>(initValue: T? = null){
         return last as Element<T>
     }
 
+    fun get(): T? = last?.value
+
     fun pop(): Element<T>? {
         val result = last
         last = last?.next
