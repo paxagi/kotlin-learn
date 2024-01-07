@@ -9,11 +9,10 @@ class Stack <T>(initValue: T? = null){
     }
 
     //private var last: Element<T>? = if ( firstValue != null) Element<T>(firstValue, null) else null
-    fun push(value: T): Element<T> {
+    fun push(value: T) {
         val next = last
         last = Element(value, next)
-        size++ // should be protected
-        return last as Element<T>
+        size++
     }
 
     fun get(): T? = last?.value
