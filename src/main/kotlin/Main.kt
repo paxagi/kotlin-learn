@@ -1,12 +1,8 @@
-class Stack <T>(initValue: T? = null){
+class Stack <T>(){
     private class Element<E>(var value: E, var next: Element<E>?)
     private var last: Element<T>? = null
     var size: Int = 0
         private set
-
-    init {
-        if (initValue != null) push(initValue)
-    }
 
     //private var last: Element<T>? = if ( firstValue != null) Element<T>(firstValue, null) else null
     fun push(value: T) {
@@ -27,8 +23,9 @@ class Stack <T>(initValue: T? = null){
 
 // Test
 fun main() {
-    var empty = Stack<String>()
-    var alone = Stack<String>("one")
+    val empty = Stack<String>()
+    val alone = Stack<String>()
+    alone.push("one")
 
     println("l: ${empty.size}, ${alone.size}")
 
