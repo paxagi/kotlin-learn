@@ -1,7 +1,7 @@
 import java.security.MessageDigest
 
-class HashMap <K, V> (key: K, value: V) {
-    private var dict = emptyArray<MutableMap<K, V>>()
+class MyHashMap <K, V> () {
+    private var dict = Array<MutableMap<K, V>?>(Int.MAX_VALUE / divider, { null })
     companion object {
         fun <K> hash(key: K): Int { // TODO: set private modifier
             return MessageDigest
@@ -19,5 +19,8 @@ class HashMap <K, V> (key: K, value: V) {
 }
 
 fun main() {
-    println(HashMap.hash("words"))
+    println(MyHashMap.hash("words"))
+    val myHashMap = MyHashMap<Int, String>()
+    myHashMap.push(1, "test")
+    println(myHashMap.toString())
 }
