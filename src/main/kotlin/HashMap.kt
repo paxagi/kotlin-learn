@@ -1,15 +1,16 @@
 import java.security.MessageDigest
 import kotlin.math.absoluteValue
 
-class MyHashMap <K, V> () {
-    private var dict = Array<MutableMap<K, V>?>(Int.MAX_VALUE / divider, { null })
+class MyHashMap <K, V> {
+    private var dict = Array<MutableMap<K, V>?>(Int.MAX_VALUE / DIVIDER) { null }
+
     companion object {
-        val divider = 2
+        const val DIVIDER = 2
         fun <K> hash(key: K): Int { // TODO: set private modifier
             return MessageDigest
                 .getInstance("SHA-256")
                 .digest(key.toString().toByteArray())
-                .fold("", { str, it -> str + "%02x".format(it) }).toBigInteger(16).toInt().absoluteValue / divider
+                .fold("") { str, it -> str + "%02x".format(it) }.toBigInteger(16).toInt().absoluteValue / DIVIDER
         }
     }
 
