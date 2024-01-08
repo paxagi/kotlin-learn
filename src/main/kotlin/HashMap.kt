@@ -15,7 +15,7 @@ class MyHashMap <K, V> () {
 
     fun push(key: K, value: V) {
         val bucketIndex = hash(key)
-        var pair = dict[bucketIndex]
+        val pair = dict[bucketIndex]
         if (pair != null) {
             if (pair.containsKey(key)) pair[key] = value
         } else {
@@ -27,8 +27,8 @@ class MyHashMap <K, V> () {
 }
 
 fun main() {
-    println(MyHashMap.hash("words"))
+    println("hash: " + MyHashMap.hash("words"))
     val myHashMap = MyHashMap<Int, String>()
     myHashMap.push(1, "test")
-    println(myHashMap.toString())
+    println(myHashMap.get(1))
 }
