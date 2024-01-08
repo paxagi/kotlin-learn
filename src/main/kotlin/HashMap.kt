@@ -15,8 +15,12 @@ class MyHashMap <K, V> () {
 
     fun push(key: K, value: V) {
         val bucketIndex = hash(key)
-        val pair = dict[bucketIndex]
-        if (pair.containsKey(key)) pair[key] = value
+        var pair = dict[bucketIndex]
+        if (pair != null) {
+            if (pair.containsKey(key)) pair[key] = value
+        } else {
+            dict[bucketIndex] = mutableMapOf(key to value)
+        }
     }
 }
 
