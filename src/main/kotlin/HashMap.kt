@@ -30,5 +30,7 @@ fun main() {
     println("hash: " + MyHashMap.hash("words"))
     val myHashMap = MyHashMap<Int, String>()
     myHashMap.add(1, "test")
+    myHashMap.add(1, "other string")
     println(myHashMap.get(1))
+    println(myHashMap.get(2))
 }
