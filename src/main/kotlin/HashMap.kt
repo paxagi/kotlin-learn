@@ -22,6 +22,8 @@ class MyHashMap <K, V> () {
             dict[bucketIndex] = mutableMapOf(key to value)
         }
     }
+
+    fun get(key: K): V? = dict[hash(key)]?.get(key)
 }
 
 fun main() {
