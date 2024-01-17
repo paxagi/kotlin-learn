@@ -1,11 +1,17 @@
 import java.security.MessageDigest
+import java.util.LinkedList
 import kotlin.math.absoluteValue
 
 class MyHashMap <K, V> {
-    private var dict = Array<MutableMap<K, V>?>(Int.MAX_VALUE / DIVIDER) { null }
+    class Bucket<K, V>(private var key: K, var value: V) {
+        private val hash = hash(key)
+        lateinit var next: Bucket<K, V>
+    }
+    private var dict = Array<LinkedList<Bucket<K, V>>?>(DEFAULT_SIZE) { null }
 
     companion object {
         const val DIVIDER = 2
+        private const val DEFAULT_SIZE = 16
         fun <K> hash(key: K): Int { // TODO: set private modifier
             return MessageDigest
                 .getInstance("SHA-256")
