@@ -34,18 +34,12 @@ class MyHashMap <K, V> {
         if (nodesList.isNullOrEmpty()) {
             dict[bucketIndex] = LinkedList<Node<K, V>>().also { it.add(Node(key, value)) }
         } else {
-            var node: Node<K, V>? = null
-            for (element in nodesList) {
-                if (element.key == key) {
-                    node = element
-                    break
-                }
+            val node: Node<K, V>? = keyToNode(key)
+            if (node == null) {
+                nodesList.add(Node(key, value))
+            } else {
+                node.value = value
             }
-           if (node == null) {
-               nodesList.add(Node(key, value))
-           } else {
-               node.value = value
-           }
         }
     }
 
