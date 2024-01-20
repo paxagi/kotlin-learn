@@ -1,6 +1,4 @@
-import java.security.MessageDigest
 import java.util.LinkedList
-import kotlin.math.absoluteValue
 
 class MyHashMap <K, V> {
     class Node<K, V> (val key: K, var value: V) {
@@ -12,6 +10,21 @@ class MyHashMap <K, V> {
     companion object {
         const val DIVIDER = 2
         private const val DEFAULT_SIZE = 16
+    }
+
+    private fun keyToNode(key: K): Node<K, V>? {
+        val bucketIndex = key.hashCode() % DEFAULT_SIZE
+        val nodesList = dict[bucketIndex]
+        var node: Node<K, V>? = null
+        if (nodesList != null) {
+            for (element in nodesList) {
+                if (element.key == key) {
+                    node = element
+                    break
+                }
+            }
+        }
+        return node
     }
 
     fun add(key: K, value: V) {
@@ -36,20 +49,7 @@ class MyHashMap <K, V> {
         }
     }
 
-    fun get(key: K): V? {
-        val bucketIndex = key.hashCode() % DEFAULT_SIZE
-        val nodesList = dict[bucketIndex]
-        var node: Node<K, V>? = null
-        if (nodesList != null) {
-            for (element in nodesList) {
-                if (element.key == key) {
-                    node = element
-                    break
-                }
-            }
-        }
-        return node?.value
-    }
+    fun get(key: K): V? = keyToNode(key)?.value
 }
 
 fun main() {
