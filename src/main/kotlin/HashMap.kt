@@ -1,4 +1,4 @@
-import java.util.LinkedList
+import java.util.*
 
 class MyHashMap <K, V> {
     class Node<K, V> (val key: K, var value: V) {
@@ -43,15 +43,15 @@ class MyHashMap <K, V> {
         }
     }
 
-    fun get(key: K): V? = keyToNode(key)?.value
+    operator fun get(key: K): V? = keyToNode(key)?.value
 }
 
 fun main() {
     val myHashMap = MyHashMap<Int, String>()
     myHashMap.add(1, "test")
-    println(myHashMap.get(1))
+    println(myHashMap[1])
     myHashMap.add(1, "it's one")
-    println(myHashMap.get(1))
+    println(myHashMap[1])
     myHashMap.add(2, "it's two")
-    println(myHashMap.get(2))
+    println(myHashMap[2])
 }
