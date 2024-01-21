@@ -51,6 +51,12 @@ class MyHashMap <K, V> {
 
     }
 
+    fun remove(key: K): Boolean {
+        val bucketIndex = key.hashCode() % DEFAULT_SIZE
+        val nodesList: LinkedList<Node<K, V>>? = dict[bucketIndex]
+        return nodesList?.remove(keyToNode(key)).also { size-- } ?: false
+    }
+
     operator fun get(key: K): V? = keyToNode(key)?.value
 }
 
@@ -62,5 +68,8 @@ fun main() {
     println(myHashMap[1])
     myHashMap.add(2, "it's two")
     println(myHashMap[2])
+    println(myHashMap.size)
+    myHashMap.remove(1)
+    println(myHashMap[1])
     println(myHashMap.size)
 }
