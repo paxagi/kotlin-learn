@@ -1,6 +1,6 @@
 import java.util.*
 
-class MyHashMap <K, V> {
+class MyHashMap <K, V> : Iterable<MyHashMap.Node<K, V>>{
     class Node<K, V> (val key: K, var value: V) {
         var next: Node<K, V>? = null
     }
@@ -59,6 +59,9 @@ class MyHashMap <K, V> {
     }
 
     operator fun get(key: K): V? = keyToNode(key)?.value
+    override fun iterator(): Iterator<Node<K, V>> {
+        TODO("Not yet implemented")
+    }
 }
 
 fun main() {
