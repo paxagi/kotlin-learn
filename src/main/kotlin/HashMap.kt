@@ -14,8 +14,7 @@ class MyHashMap <K, V> {
     }
 
     private fun keyToNode(key: K): Node<K, V>? {
-        val bucketIndex = key.hashCode() % DEFAULT_SIZE
-        val nodesList = dict[bucketIndex]
+        val nodesList = keyToList(key)
         var node: Node<K, V>? = null
         if (nodesList != null) {
             for (element in nodesList) {
@@ -28,12 +27,12 @@ class MyHashMap <K, V> {
         return node
     }
 
-    fun add(key: K, value: V) {
-        val bucketIndex = key.hashCode() % DEFAULT_SIZE
-        val nodesList: LinkedList<Node<K, V>>? = dict[bucketIndex]
+    private fun keyToList(key: K): LinkedList<Node<K, V>>? = dict[key.hashCode() % DEFAULT_SIZE]
 
+    fun add(key: K, value: V) {
+        val nodesList = keyToList(key)
         if (nodesList.isNullOrEmpty()) { // new list and node
-            dict[bucketIndex] = LinkedList<Node<K, V>>()
+            dict[key.hashCode() % DEFAULT_SIZE] = LinkedList<Node<K, V>>()
                 .also { it.add(Node(key, value)) }
                 .also { size++ }
         } else {
@@ -50,8 +49,7 @@ class MyHashMap <K, V> {
     }
 
     fun remove(key: K): Boolean {
-        val bucketIndex = key.hashCode() % DEFAULT_SIZE
-        val nodesList: LinkedList<Node<K, V>>? = dict[bucketIndex]
+        val nodesList = keyToList(key)
         return nodesList?.remove(keyToNode(key)).also { size-- } ?: false
     }
 
