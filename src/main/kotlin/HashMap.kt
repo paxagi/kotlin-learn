@@ -2,7 +2,6 @@ import java.util.*
 
 class MyHashMap <K, V> {
     class Node<K, V> (val key: K, var value: V) {
-        val hash = key.hashCode()
         var next: Node<K, V>? = null
     }
 
@@ -11,7 +10,6 @@ class MyHashMap <K, V> {
     private var dict = Array<LinkedList<Node<K, V>>?>(DEFAULT_SIZE) { null }
 
     companion object {
-        const val DIVIDER = 2
         private const val DEFAULT_SIZE = 16
     }
 
