@@ -64,16 +64,19 @@ class MyHashMap <K, V> {
 fun main() {
     val myHashMap = MyHashMap<Int, String>()
     myHashMap.add(1, "test")
-    println(myHashMap[1])
+    assert(myHashMap[1] == "test") { "wrong value" }
+
     myHashMap.add(1, "it's one")
-    println(myHashMap[1])
+    assert(myHashMap[1] == "it's one") { "wrong value" }
+
     myHashMap.add(2, "it's two")
-    println(myHashMap[2])
-    println(myHashMap.size)
+    assert(myHashMap[2] == "it's two") { "wrong value" }
+    assert(myHashMap.size == 2) { "wrong size" }
+
     myHashMap.remove(1)
-    println(myHashMap[1])
-    println(myHashMap.size)
+    assert(myHashMap[1] == null) { "wrong value" }
+    assert(myHashMap.size == 1) { "wrong size" }
+
     myHashMap.clear()
-    println(myHashMap[1])
-    println(myHashMap[2])
+    assert(myHashMap.size == 0) { "wrong size" }
 }
